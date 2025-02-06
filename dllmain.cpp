@@ -147,13 +147,13 @@ DWORD WINAPI MainThread(LPVOID param) {
 
 	std::cout << "DLL loaded successfully! whgame.dll base address: 0x"
 		<< std::hex << globals::baseAddress << std::dec << '\n';
-	std::cout << "Lua hooked! Press Insert to execute run.lua, or Delete to uninject\n";
+	std::cout << "Lua hooked! Press Home to execute run.lua, or End to uninject\n";
 
 	bool insertKeyWasPressed = false;
 
 	// Main loop
-	while (!(GetAsyncKeyState(VK_DELETE) & 0x8000)) {
-		if (GetAsyncKeyState(VK_INSERT) & 0x8000) {
+	while (!(GetAsyncKeyState(VK_END) & 0x8000)) {
+		if (GetAsyncKeyState(VK_HOME) & 0x8000) {
 			if (!insertKeyWasPressed) {
 				insertKeyWasPressed = true;
 				globals::scriptQueue.push_back("System.LogAlways('Running script file run.lua!')");
